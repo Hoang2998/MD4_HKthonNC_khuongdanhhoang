@@ -14,10 +14,10 @@ export const setupServices = {
         const result = await pool.execute("INSERT INTO category (name) VALUES (?)",[name]) 
         return result 
     },
-    getQuizz: async(number:number,category:number,lever:number) => {
-        console.log(number,category,lever)
-        const [result] = await pool.execute("SELECT * FROM question JOIN category ON question.category = category.id WHERE category = ? AND lever = ? ",[category,lever] )
-        console.log(result)
+    getQuizz: async(numbera:string,category:number,lever:number) => {
+        console.log(numbera,category,lever)
+        const [result] = await pool.execute("SELECT * FROM question JOIN category ON question.category = category.id WHERE question.category = ? AND question.lever = ?  LIMIT ?;",[category,lever,numbera] )
+        console.log("111111111",result)
         return result
     },
     getAnswer: async() => {

@@ -40,7 +40,7 @@ export const setupController = {
         const {number,category,lever} = req.params
         console.log(number,category,lever)
         try {
-            const result = await setupServices.getQuizz(Number(number),Number(category),Number(lever))
+            const result = await setupServices.getQuizz(number,Number(category),Number(lever))
             res.status(200).json({
                 data:result,
                 message:"success",

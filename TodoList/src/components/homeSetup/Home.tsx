@@ -10,7 +10,7 @@ interface cate{
 type req = {
     number?:number,
     category?:number,
-    level?:number
+    lever?:number
 }
 const navigate = useNavigate()
 const [category, setCategory] = React.useState<cate[]>([])
@@ -26,8 +26,12 @@ const changeReq = (e:React.ChangeEvent<HTMLSelectElement>)=>{
     setRequest({...request,[e.target.name]:e.target.value})
 }
 const getRequest = ()=>{
-    getReq(request)
-    navigate('/play')
+    if(request.number != undefined && request.category != undefined && request.lever != undefined){
+        getReq(request)
+        navigate('/play')
+    }else{
+    alert('chua chon du thong tin')
+    }
 }
   return (
     <>
@@ -37,10 +41,10 @@ const getRequest = ()=>{
             <label htmlFor="">Number of questions </label>
             <br />
             <select name="number" id="" onChange={changeReq} >
-                <option value="0">chon so cau </option>
+                <option value="">chon so cau </option>
                 <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
             </select>
             <br />
             <label htmlFor="">Category</label>
@@ -63,7 +67,7 @@ const getRequest = ()=>{
                 <option value="2">Hard</option>
             </select>
             <br />
-            <button onClick={getRequest}>START</button>
+            <button onClick={getRequest} style={{marginTop:'20px'}}>START</button>
         </div>
     </div>
     </>
